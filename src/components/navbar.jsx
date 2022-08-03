@@ -3,13 +3,12 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 function NavScroll() {
   return (
     <Navbar style={{background: "#026AA7"}} expand="lg">
-      {console.log("nav")}
       <Container fluid>
         <Navbar.Brand href="/"><b style={{color: "white", padding: "1rem"}}>Trello</b></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />

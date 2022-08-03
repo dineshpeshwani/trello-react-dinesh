@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import axios from "axios";
+// import axios from "axios";
 import * as trelloAPI from '../api';
 
 class CreateNewBoard extends Component {
@@ -18,7 +18,7 @@ class CreateNewBoard extends Component {
     }
    
     handleSubmit(e){
-        e.preventDefault();
+        // e.preventDefault();
         this.props.newBoard(this.state.boardName)
         trelloAPI.createBoard(this.state.boardName)
     }
@@ -27,7 +27,6 @@ class CreateNewBoard extends Component {
     return (
         
       <div style={{ padding: "3rem" }}>
-        {console.log("newboard")}
         <Card
           style={{ width: "250px", height: "180px", cursor: "pointer" }}
           className="bg-dark text-white"

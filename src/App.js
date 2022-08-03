@@ -6,7 +6,7 @@ import Boards from "./components/boards";
 import * as trelloAPI from "./api.js";
 import CreateNewBoard from "./components/createNewBoard";
 import BoardList from "./components/boardLists";
-import ContentLoader, { Facebook } from "react-content-loader";
+import ContentLoader from "react-content-loader";
 
 class App extends Component {
   state = {
@@ -21,37 +21,24 @@ class App extends Component {
     }));
   };
 
-  componentDidMount() {
-    trelloAPI.getAllBoards().then((boards) => {
+  fectchApi = async()=>{
+   await  trelloAPI.getAllBoards().then((boards) => {
       this.setState({ boards,
         loaderState: true });
     });
   }
 
-  //  componentDidMount(){
-  //   trelloAPI.getList("62e7a46dfad6972548fadcdb")
-  //   .then(lists => {
-  //     this.setState({lists})
-  //   })
-  //  }
+  componentDidMount() {
+    this.fectchApi()
+  }
 
-  //  handleChange = (e) =>{
-  //   this.setState({
-  //     listName: e.target.value
-  //   });
-  //  };
+  deleteBoard=(id)=>{
+    const updatedBoards = this.state.boards.filter(eachBoard=>eachBoard.id!==id)
+    this.setState({boards:updatedBoards})
+  }
 
-  //  handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const newList = trelloAPI.addList("62e7a46dfad6972548fadcdb", this.state.listName);
-  //   this.setState({
-  //     listName: "",
-  //     lists: [newList, ...this.state.lists],
-  //   });
-  //  };
+  render(){
 
-
-  render() {
     let loader = !this.state.loaderState ? (
         <ContentLoader
           height={140}
@@ -75,25 +62,13 @@ class App extends Component {
           <Route exact path="/" element={
                 <>
                   <CreateNewBoard newBoard={this.addBoard} />
-                  <Boards boards={this.state.boards} />
+                  <Boards boards={this.state.boards} deleteBoard={this.deleteBoard}/>
                 </>}
             />
-            <Route path="/boards/:code" element={<BoardList></BoardList>}></Route>
-            <Route path="*" element={<h1>Error!!</h1>} />
+            <Route path="/boards/:code" element={<BoardList/>}></Route>
+            <Route path="*" element={<h1>Page Not Found!!</h1>} />
           </Routes>
         </BrowserRouter>
-
-        {/* <form onSubmit={this.handleSubmit}>
-          <input value={this.state.listName} 
-          onChange ={this.handleChange}
-          type="text" name='list' id='list' />
-          <button type='submit'>Add List</button>
-          <ul>
-            {this.state.lists.map(list => {
-              return <li key={list.id}>{list.name}</li>
-            })}
-          </ul>
-        </form> */}
       </div>
     );
   }

@@ -39,6 +39,29 @@ export function addList(idBoard, name){
     }).then(res => res.data);
 }
 
-export function getBoards(){
-    return axios.get(``)
+export function deleteList(id){
+    return axios.put(`https://api.trello.com/1/lists/${id}/closed`, null, {
+        params: {
+            value: true
+        }
+    }).then(res => res.data);
+}
+
+export function getListCards(id){
+    return axios.get(`https://api.trello.com/1/lists/${id}/cards`)
+    .then(res => res.data);
+}
+
+export function addCard(idList, name){
+    return axios.post('https://api.trello.com/1/cards?', null, {
+        params: {
+            idList,
+            name
+        }
+    }).then(res => res.data);
+}
+
+export function deleteCard(id){
+    return axios.delete(`https://api.trello.com/1/cards/${id}`)
+    .then(res => res.data);
 }

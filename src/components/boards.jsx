@@ -2,16 +2,14 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+// import Form from "react-bootstrap/Form";
 import * as trelloAPI from '../api.js';
 
 class Boards extends Component {
 
-    state = {
-        deleteId: ""
-    }
-
   handleDelete = (val) => {
     trelloAPI.deleteBoard(val);
+    
   };
 
   render() {
@@ -21,9 +19,9 @@ class Boards extends Component {
         <div style={{ display: "flex", padding: "2rem", flexWrap: "wrap" }}>
           {boardName.map((board, index) => {
             return (
-              <div>
+              <div key={index}>
                 <Card
-                  key={index}
+                  
                   style={{
                     width: "250px",
                     cursor: "pointer",
@@ -49,7 +47,8 @@ class Boards extends Component {
                     variant="danger"
                     type="button"
                     onClick={(e) => 
-                        this.handleDelete(board["id"])}>
+                        {this.handleDelete(board["id"])
+                        this.props.deleteBoard(board["id"])}}>
                     Delete
                   </Button>
                 </div>
