@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import * as trelloAPI from "./api.js";
 import Navbar from "./components/navbar";
 import Boards from "./components/boards";
-import * as trelloAPI from "./api.js";
 import CreateNewBoard from "./components/createNewBoard";
 import BoardList from "./components/boardLists";
 import ContentLoader from "react-content-loader";

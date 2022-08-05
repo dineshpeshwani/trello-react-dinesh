@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Card, Button, Form } from "react-bootstrap";
 import * as trelloAPI from "../api.js";
+import Example from "./viewCardModal.jsx";
 
 class CardsInList extends Component {
   state = {
     cards: [],
-    cardName: ""
+    cardName: "",
   };
 
 
@@ -49,30 +50,22 @@ class CardsInList extends Component {
       });
     };
 
-
   render() {
     if (this.state.cards.length !== 0) {
       return (
         <>
           {this.state.cards.map((each, index) => (
-            <div key={index}
-              style={{
-                marginTop: "1rem",
-                border: "1px dotted black",
-                borderRadius: "10px",
-              }}
-            >
-                {/* <p>{console.log(each.id)}</p> */}
-              <h3>{each.name}</h3>
+            <div key={index} style={{ margin: "1rem", border: "1px dotted black", borderRadius: "10px", padding:"1rem"}}>
+              <h4>{each.name}</h4>
               <div style={{ display: "flex", justifyContent: "space-around", padding: "1rem"}}>
-                <Button type="button" style={{ width: "%" }}>
-                  View Card
-                </Button>
+                <Example cardId = {each['id']}
+                          cardName = {each['name']}
+                />
                 <Button
                   onClick={(e) => this.handleCardDelete(e, each["id"])}
                   type="button"
                   variant="danger"
-                  style={{ width: "30%" }}
+                  style={{ width: "130px", padding:"0"  }}
                 >
                   Delete Card
                 </Button>
@@ -88,9 +81,9 @@ class CardsInList extends Component {
               type="text"
               name="card"
               id= "text"
-              required
+              required  
             />
-              <Button onClick={(e) => this.handleCardSubmit(e, this.props.listId)} style={{padding: "0.75rem", marginLeft: "1rem"}} type="submit"  
+              <Button onClick={(e) => this.handleCardSubmit(e, this.props.listId)} style={{margin: "1rem"}} type="submit"  
               >Add Card</Button>
           </div>
         </>
@@ -99,18 +92,18 @@ class CardsInList extends Component {
       return (
         <>
           <p>No Task</p>
-          <div>
+          <div style={{margin:"1rem"}}>
            <input
             style={{padding: "0.75rem"}}
             value={this.state.cardName}
-            placeholder =  "Add New List"
+            placeholder =  "Add New Card"
               onChange={this.handleCardChange}
               type="text"
               name="list"
               id="list"
               required
             />
-              <Button onClick={(e) => this.handleCardSubmit(e, this.props.listId)} style={{padding: "0.75rem", marginLeft: "1rem"}} type="submit"  
+              <Button onClick={(e) => this.handleCardSubmit(e, this.props.listId)} style={{marginLeft: "1rem"}} type="submit"  
               >Add card</Button>
           </div>
         </>

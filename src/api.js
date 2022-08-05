@@ -65,3 +65,22 @@ export function deleteCard(id){
     return axios.delete(`https://api.trello.com/1/cards/${id}`)
     .then(res => res.data);
 }
+
+export function getChecklist(id){
+    return axios.get(`https://api.trello.com/1/cards/${id}/checklists?`)
+    .then((res) => res.data)
+}
+
+export function addCheckList(idCard, name){
+    return axios.post(`https://api.trello.com/1/checklists?`, null, {
+        params: {
+            idCard,
+            name
+        }
+    }).then(res => res.data)
+}
+
+export function deleteCheckList(id){
+    return axios.delete(`https://api.trello.com/1/checklists/${id}`)
+    .then(res => res.data);
+}

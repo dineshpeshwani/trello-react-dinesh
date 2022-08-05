@@ -69,9 +69,8 @@ class BoardList extends Component {
                 return (
                     <Card key={index} style={{ margin: "1rem", minWidth: "350px"}}>
                       <Card.Header as="h5">{list['name']}</Card.Header>
-                      <CardsInList listId = {list['id']} />
+                      <CardsInList listId = {list['id']}/>
                       <Card.Body >
-                        {/* <Button  style={{margin:"1rem"}} variant="primary">Add New Task</Button> */}
                         <br />
                             <Button
                             variant="danger"

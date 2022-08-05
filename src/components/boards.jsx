@@ -9,7 +9,6 @@ class Boards extends Component {
 
   handleDelete = (val) => {
     trelloAPI.deleteBoard(val);
-    
   };
 
   render() {
@@ -21,7 +20,6 @@ class Boards extends Component {
             return (
               <div key={index}>
                 <Card
-                  
                   style={{
                     width: "250px",
                     cursor: "pointer",
