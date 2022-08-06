@@ -84,3 +84,29 @@ export function deleteCheckList(id){
     return axios.delete(`https://api.trello.com/1/checklists/${id}`)
     .then(res => res.data);
 }
+
+export function getCheckItems(id){
+    return axios.get(`https://api.trello.com/1/checklists/${id}/checkItems?`)
+    .then(res => res.data);
+}
+
+export function addCheckItem(id, name){
+    return axios.post(`https://api.trello.com/1/checklists/${id}/checkItems?`, null, {
+        params: {
+            name
+        }
+    }).then(res => res.data)
+}
+
+export function deleteCheckItem(id, idCheckItem){
+    return axios.delete(`https://api.trello.com/1/checklists/${id}/checkItems/${idCheckItem}?`)
+    .then(res => res.data);
+}
+
+export function UpdateCheckItem(idCard,idCheckItem,state){
+    return axios.put(`https://api.trello.com/1/cards/${idCard}/checkItem/${idCheckItem}`,null,{
+        params:{
+            state
+        }
+    }).then(res => res.data)
+}

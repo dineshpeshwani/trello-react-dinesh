@@ -3,6 +3,7 @@ import { Card, InputGroup } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import * as trelloAPI from "../api.js";
+import CheckItemsInCheckList from "./checkItemsInCheckList.jsx";
 
 class Example extends Component {
   state = {
@@ -60,15 +61,15 @@ class Example extends Component {
 
   showCheckList = ()=>(
     <>{this.state.checkList.map(((EachItem, index) =>{
-        let itemsInAcheckList
-        if(EachItem.checkItems.length!==0){
-            itemsInAcheckList = EachItem.checkItems.map((item) => {
-                return(<InputGroup style={{marginBottom:"0.5rem"}}>
-                    <InputGroup.Checkbox/>
-                    <InputGroup.Text>{item.name}</InputGroup.Text>
-                </InputGroup>)
-            })
-        }
+        // let itemsInAcheckList
+        // if(EachItem.checkItems.length!==0){
+        //     itemsInAcheckList = EachItem.checkItems.map((item) => {
+        //         return(<InputGroup style={{marginBottom:"0.5rem"}}>
+        //             <InputGroup.Checkbox/>
+        //             <InputGroup.Text>{item.name}</InputGroup.Text>
+        //         </InputGroup>)
+        //     })
+        // }
         return (
           <Card key={index} style={{margin: "1rem"}}>
             <Card.Header>
@@ -76,7 +77,7 @@ class Example extends Component {
                 <Button variant="danger" style={{float: "right"}} onClick={(e) => this.handleCheckListDelete(e, EachItem["id"])}>Delete</Button>
             </Card.Header>
             <Card.Body>
-                {itemsInAcheckList}
+                <CheckItemsInCheckList checkListId = {EachItem.id} cardId = {this.props.cardId}/>
             </Card.Body>
           </Card>)
     } 
@@ -104,7 +105,6 @@ class Example extends Component {
   }
 
   render() {
-    console.log(this.x);
     return (
       <>
         <Button onClick={() => this.handleSetShow()}>View Card</Button>
@@ -130,4 +130,4 @@ class Example extends Component {
   }
 }
 
-export default Example;
+export default Example; 
