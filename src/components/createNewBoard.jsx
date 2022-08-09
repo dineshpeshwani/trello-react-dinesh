@@ -16,10 +16,10 @@ class CreateNewBoard extends Component {
     });
   }
 
-  handleSubmit(e) {
-    // e.preventDefault();
-    trelloAPI.createBoard(this.state.boardName);
-    this.props.newBoard(this.state.boardName);
+  handleSubmit = async(e) =>{
+    e.preventDefault();
+    const newBoard = await trelloAPI.createBoard(this.state.boardName);
+    this.props.newBoard(newBoard.data);
   }
 
   render() {  

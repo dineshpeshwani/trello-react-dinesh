@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Card, Button, Form, InputGroup } from "react-bootstrap";
+import {  Button, InputGroup } from "react-bootstrap";
 import * as trelloAPI from "../api.js";
-import Example from "./viewCardModal.jsx";
 
 class CheckItemsInCheckList extends Component {
   state = {
@@ -41,7 +40,6 @@ class CheckItemsInCheckList extends Component {
 
   handleCheckItemSubmit = async (e, val) => {
     e.preventDefault();
-    
     const newList = await trelloAPI.addCheckItem(val, this.state.checkItemName);
     this.setState({
       checkItemName: "",

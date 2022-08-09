@@ -17,7 +17,7 @@ class App extends Component {
 
   addBoard = (data) => {
     this.setState((prevState) => ({
-      boards: [...prevState.boards, { name: data }],
+      boards: [...prevState.boards, data],
     }));
   };
 

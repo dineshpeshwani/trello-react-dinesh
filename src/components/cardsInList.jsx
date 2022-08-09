@@ -34,7 +34,6 @@ class CardsInList extends Component {
     });
   };
 
-
     handleCardChange = (e) => {
       this.setState({
         cardName: e.target.value,

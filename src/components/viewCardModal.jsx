@@ -61,15 +61,6 @@ class Example extends Component {
 
   showCheckList = ()=>(
     <>{this.state.checkList.map(((EachItem, index) =>{
-        // let itemsInAcheckList
-        // if(EachItem.checkItems.length!==0){
-        //     itemsInAcheckList = EachItem.checkItems.map((item) => {
-        //         return(<InputGroup style={{marginBottom:"0.5rem"}}>
-        //             <InputGroup.Checkbox/>
-        //             <InputGroup.Text>{item.name}</InputGroup.Text>
-        //         </InputGroup>)
-        //     })
-        // }
         return (
           <Card key={index} style={{margin: "1rem"}}>
             <Card.Header>

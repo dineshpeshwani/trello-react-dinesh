@@ -25,10 +25,10 @@ class BoardList extends Component {
   };
 
   handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const newList = await trelloAPI.addList(this.id, this.state.listName);
     this.setState({
-      listName: "", 
+      listName: "",
       lists: [newList, ...this.state.lists],
     });
   };
@@ -36,25 +36,24 @@ class BoardList extends Component {
   handleDelete = async (e, val) => {
     e.preventDefault();
     await trelloAPI.deleteList(val);
-    let newList  = this.state.lists.filter((newList) => {
-        if(newList['id'] !== val){
-            return true
-        }
-    })
+    let newList = this.state.lists.filter((newList) => {
+      if (newList["id"] !== val) {
+        return true;
+      }
+    });
     this.setState({
-        lists : newList
-    })
-
+      lists: newList,
+    });
   };
-  
+
   render() {
     if (this.state.lists.length !== 0) {
       return (
-        <div style={{marginTop: "1rem"}}>
+        <div style={{ marginTop: "1rem" }}>
           <Form>
             <input
-            style={{padding: "0.75rem"}}
-            placeholder =  "Add New List"
+              style={{ padding: "0.75rem" }}
+              placeholder="Add New List"
               value={this.state.listName}
               onChange={this.handleChange}
               type="text"
@@ -62,25 +61,33 @@ class BoardList extends Component {
               id="list"
               required
             />
-              <Button onClick={this.handleSubmit} style={{padding: "0.75rem", marginLeft: "1rem"}} type="submit"  
-              >Add List</Button>
+            <Button
+              onClick={this.handleSubmit}
+              style={{ padding: "0.75rem", marginLeft: "1rem" }}
+              type="submit"
+            >
+              Add List
+            </Button>
             <div style={{ display: "flex", overflowX: "auto" }}>
               {this.state.lists.map((list, index) => {
                 return (
-                    <Card key={index} style={{ margin: "1rem", minWidth: "350px"}}>
-                      <Card.Header as="h5">{list['name']}</Card.Header>
-                      <CardsInList listId = {list['id']}/>
-                      <Card.Body >
-                        <br />
-                            <Button
-                            variant="danger"
-                          type="submit"
-                          onClick={(e) => this.handleDelete(e, list["id"])}
-                          >
-                          Delete List
-                        </Button>
-                      </Card.Body>
-                    </Card>
+                  <Card
+                    key={index}
+                    style={{ margin: "1rem", minWidth: "350px" }}
+                  >
+                    <Card.Header as="h5">{list["name"]}</Card.Header>
+                    <CardsInList listId={list["id"]} />
+                    <Card.Body>
+                      <br />
+                      <Button
+                        variant="danger"
+                        type="submit"
+                        onClick={(e) => this.handleDelete(e, list["id"])}
+                      >
+                        Delete List
+                      </Button>
+                    </Card.Body>
+                  </Card>
                 );
               })}
             </div>
